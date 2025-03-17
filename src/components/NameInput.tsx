@@ -26,7 +26,7 @@ const NameInput = ({
         className={cn(
           "absolute transition-all duration-200 pointer-events-none",
           isFocused || value 
-            ? "text-xs text-primary font-medium -translate-y-6" 
+            ? "text-xs text-primary font-medium -translate-y-8" // Increased vertical spacing from -6 to -8
             : "text-sm text-muted-foreground translate-y-1"
         )}
       >
@@ -40,10 +40,12 @@ const NameInput = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         className={cn(
-          "w-full py-2 bg-transparent border-0 border-b-2 border-b-border",
+          "w-full py-3 px-3", // Added horizontal padding (px-3) and increased vertical padding (py-3)
+          "bg-transparent border-0 border-b-2 border-b-border",
           "text-foreground text-lg focus-ring",
           "transition-all duration-200 ease-in-out outline-none",
           "focus:border-b-primary",
+          "mt-2", // Added top margin to create more space above the input
           value && "border-b-primary/50",
           className
         )}
