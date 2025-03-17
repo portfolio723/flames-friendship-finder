@@ -22,16 +22,18 @@ const NameInput = ({
   
   return (
     <div className="relative w-full mb-6">
-      <label 
-        className={cn(
-          "absolute transition-all duration-200 pointer-events-none",
-          isFocused || value 
-            ? "text-xs text-primary font-medium -translate-y-8" // Increased vertical spacing from -6 to -8
-            : "text-sm text-muted-foreground translate-y-1"
-        )}
-      >
-        {label}
-      </label>
+      {label && (
+        <label 
+          className={cn(
+            "absolute transition-all duration-200 pointer-events-none",
+            isFocused || value 
+              ? "text-xs text-primary font-medium -translate-y-8" // Increased vertical spacing from -6 to -8
+              : "text-sm text-muted-foreground translate-y-1"
+          )}
+        >
+          {label}
+        </label>
+      )}
       
       <input
         type="text"

@@ -4,7 +4,7 @@ import { Flame } from 'lucide-react';
 import NameInput from './NameInput';
 import AnimatedButton from './AnimatedButton';
 import FlamesResult from './FlamesResult';
-import { calculateFlames, getFlamesDetails, type FlamesResult as FlamesResultType } from '@/utils/flamesUtils';
+import { calculateFlames, getFlamesDetails, type FlamesResultType } from '@/utils/flamesUtils';
 import { cn } from '@/lib/utils';
 
 const FlamesCalculator = () => {
@@ -70,14 +70,14 @@ const FlamesCalculator = () => {
         }}>
           <div className="space-y-6">
             <NameInput
-              label="Your Name"
+              label=""
               value={name1}
               onChange={setName1}
               placeholder="Enter your name"
             />
             
             <NameInput
-              label="Their Name"
+              label=""
               value={name2}
               onChange={setName2}
               placeholder="Enter their name"
