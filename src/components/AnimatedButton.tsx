@@ -47,35 +47,37 @@ const AnimatedButton = ({
       {/* Interactive ripple effect */}
       <span className="absolute z-0 w-full h-full pointer-events-none ripple-animation" />
       
-      <style jsx>{`
-        .pulse-animation {
-          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 0;
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
           }
-          50% {
-            opacity: 0.3;
+          
+          @keyframes pulse {
+            0%, 100% {
+              opacity: 0;
+            }
+            50% {
+              opacity: 0.3;
+            }
           }
-        }
-        
-        .ripple-animation {
-          background-position: center;
-          transition: background 0.5s;
-        }
-        
-        button:hover .ripple-animation {
-          background: radial-gradient(circle, transparent 1%, rgba(255, 255, 255, 0.1) 1%) center/15000%;
-        }
-        
-        button:active .ripple-animation {
-          background-color: rgba(255, 255, 255, 0.2);
-          background-size: 100%;
-          transition: background 0s;
-        }
-      `}</style>
+          
+          .ripple-animation {
+            background-position: center;
+            transition: background 0.5s;
+          }
+          
+          button:hover .ripple-animation {
+            background: radial-gradient(circle, transparent 1%, rgba(255, 255, 255, 0.1) 1%) center/15000%;
+          }
+          
+          button:active .ripple-animation {
+            background-color: rgba(255, 255, 255, 0.2);
+            background-size: 100%;
+            transition: background 0s;
+          }
+        `
+      }} />
     </button>
   );
 };
