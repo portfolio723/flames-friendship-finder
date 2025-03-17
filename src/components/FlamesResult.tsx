@@ -2,7 +2,7 @@
 import React from 'react';
 import { Flame, Heart, HeartCrack, MessageCircleHeart, Check, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { FlamesResult, FlamesResultDetails } from '@/utils/flamesUtils';
+import { type FlamesResult as FlamesResultType, FlamesResultDetails } from '@/utils/flamesUtils';
 import AnimatedButton from './AnimatedButton';
 
 interface FlamesResultProps {

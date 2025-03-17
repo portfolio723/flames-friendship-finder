@@ -4,7 +4,7 @@ import { Flame } from 'lucide-react';
 import NameInput from './NameInput';
 import AnimatedButton from './AnimatedButton';
 import FlamesResult from './FlamesResult';
-import { calculateFlames, getFlamesDetails, FlamesResult as FlamesResultType } from '@/utils/flamesUtils';
+import { calculateFlames, getFlamesDetails, type FlamesResult as FlamesResultType } from '@/utils/flamesUtils';
 import { cn } from '@/lib/utils';
 
 const FlamesCalculator = () => {

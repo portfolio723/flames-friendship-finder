@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 
-interface NameInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface NameInputProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
+  className?: string;
+  placeholder?: string;
 }
 
 const NameInput = ({ 
@@ -13,8 +15,9 @@ const NameInput = ({
   value, 
   onChange, 
   className, 
+  placeholder,
   ...props 
-}: NameInputProps) => {
+}: NameInputProps & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) => {
   const [isFocused, setIsFocused] = useState(false);
   
   return (
@@ -44,6 +47,7 @@ const NameInput = ({
           value && "border-b-primary/50",
           className
         )}
+        placeholder={placeholder}
         autoComplete="off"
         {...props}
       />
