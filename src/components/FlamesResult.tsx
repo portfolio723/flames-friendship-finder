@@ -1,10 +1,11 @@
 
 import React from 'react';
-import { Flame, Heart, HeartCrack, MessageCircleHeart, Check, X } from 'lucide-react';
+import { Flame, Heart, HeartCrack, MessageCircleHeart, Check, X, Download, Share2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { type FlamesResult as FlamesResultType, FlamesResultDetails } from '@/utils/flamesUtils';
 import AnimatedButton from './AnimatedButton';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useToast } from '@/hooks/use-toast';
 
 interface FlamesResultProps {
   result: FlamesResultDetails;
@@ -15,6 +16,7 @@ interface FlamesResultProps {
 
 const FlamesResult = ({ result, name1, name2, onReset }: FlamesResultProps) => {
   const isMobile = useIsMobile();
+  const { toast } = useToast();
   
   const getIcon = () => {
     const iconSize = isMobile ? "w-12 h-12" : "w-16 h-16";
@@ -34,6 +36,69 @@ const FlamesResult = ({ result, name1, name2, onReset }: FlamesResultProps) => {
         return <Check className={`${iconSize} text-flames-siblings animate-pulse-slow`} />;
       default:
         return <Flame className={`${iconSize} text-primary animate-pulse-slow`} />;
+    }
+  };
+
+  const downloadResult = () => {
+    const content = `
+FLAMES Compatibility Result
+---------------------------
+${name1} & ${name2}
+Result: ${result.type}
+Description: ${result.description}
+---------------------------
+Generated with FLAMES Compatibility App
+`;
+    
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `flames-result-${name1.toLowerCase()}-${name2.toLowerCase()}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    toast({
+      title: "Downloaded!",
+      description: "Your FLAMES result has been downloaded as a text file.",
+      duration: 3000,
+    });
+  };
+
+  const shareResult = async () => {
+    const shareData = {
+      title: "FLAMES Compatibility Result",
+      text: `${name1} & ${name2} - ${result.type}: ${result.description}`,
+      url: window.location.href
+    };
+
+    try {
+      if (navigator.share && isMobile) {
+        await navigator.share(shareData);
+        toast({
+          title: "Shared!",
+          description: "Your FLAMES result has been shared successfully.",
+          duration: 3000,
+        });
+      } else {
+        // Fallback for desktop or browsers without Web Share API
+        navigator.clipboard.writeText(shareData.text);
+        toast({
+          title: "Copied to clipboard!",
+          description: "Share link copied to clipboard.",
+          duration: 3000,
+        });
+      }
+    } catch (error) {
+      console.error("Error sharing:", error);
+      toast({
+        title: "Share failed",
+        description: "Could not share the result. Try copying manually.",
+        variant: "destructive",
+        duration: 3000,
+      });
     }
   };
 
@@ -66,19 +131,33 @@ const FlamesResult = ({ result, name1, name2, onReset }: FlamesResultProps) => {
             </p>
           </div>
           
-          <div className="flex justify-center w-full mt-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 w-full mt-2">
             <AnimatedButton 
               onClick={onReset} 
-              className="w-full"
+              className="md:col-span-1"
             >
               Try Another
             </AnimatedButton>
+            
+            <AnimatedButton 
+              onClick={downloadResult} 
+              variant="outline"
+              className="md:col-span-1 flex items-center justify-center"
+            >
+              <Download className="w-4 h-4 mr-1" />
+              Download
+            </AnimatedButton>
+            
+            <AnimatedButton 
+              onClick={shareResult} 
+              variant="outline"
+              className="md:col-span-1 flex items-center justify-center"
+            >
+              <Share2 className="w-4 h-4 mr-1" />
+              Share
+            </AnimatedButton>
           </div>
         </div>
-      </div>
-      
-      <div className="text-center mt-6 md:mt-8 text-xs md:text-sm text-muted-foreground">
-        <p>FLAMES: Friendship, Love, Affection, Marriage, Enemy, Siblings</p>
       </div>
     </div>
   );
