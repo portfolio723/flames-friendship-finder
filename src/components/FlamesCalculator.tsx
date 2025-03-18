@@ -6,6 +6,7 @@ import AnimatedButton from './AnimatedButton';
 import FlamesResult from './FlamesResult';
 import { calculateFlames, getFlamesDetails, type FlamesResult as FlamesResultType } from '@/utils/flamesUtils';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const FlamesCalculator = () => {
   const [name1, setName1] = useState('');
@@ -13,6 +14,7 @@ const FlamesCalculator = () => {
   const [result, setResult] = useState<FlamesResultType | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
   const [error, setError] = useState('');
+  const isMobile = useIsMobile();
 
   const handleCalculate = () => {
     setError('');
@@ -51,15 +53,15 @@ const FlamesCalculator = () => {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto animate-fade-in">
+    <div className="w-full max-w-md mx-auto animate-fade-in px-3 sm:px-0">
       <div className={cn(
-        "p-8 rounded-2xl shadow-lg glass",
+        "p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg glass",
         "border border-white/20 backdrop-blur-md"
       )}>
-        <div className="flex flex-col items-center mb-6">
-          <Flame className="w-12 h-12 text-primary mb-2" />
-          <h1 className="text-2xl font-semibold">FLAMES</h1>
-          <p className="text-sm text-muted-foreground text-center mt-2">
+        <div className="flex flex-col items-center mb-4 md:mb-6">
+          <Flame className="w-8 h-8 md:w-12 md:h-12 text-primary mb-2" />
+          <h1 className="text-xl md:text-2xl font-semibold">FLAMES</h1>
+          <p className="text-xs md:text-sm text-muted-foreground text-center mt-2">
             Find your relationship compatibility
           </p>
         </div>
@@ -68,7 +70,7 @@ const FlamesCalculator = () => {
           e.preventDefault();
           handleCalculate();
         }}>
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             <NameInput
               label=""
               value={name1}
@@ -98,8 +100,8 @@ const FlamesCalculator = () => {
         </form>
       </div>
       
-      <div className="mt-8 text-center">
-        <p className="text-xs text-muted-foreground">
+      <div className="mt-6 md:mt-8 text-center">
+        <p className="text-xs md:text-sm text-muted-foreground">
           FLAMES: Friendship, Love, Affection, Marriage, Enemy, Siblings
         </p>
       </div>

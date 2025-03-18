@@ -1,8 +1,11 @@
 
 import React from 'react';
 import FlamesCalculator from '@/components/FlamesCalculator';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index = () => {
+  const isMobile = useIsMobile();
+  
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-background to-accent p-4">
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -11,19 +14,18 @@ const Index = () => {
       </div>
       
       <div className="max-w-4xl w-full relative z-10">
-        <header className="text-center mb-8">
-          <h1 className="inline-block text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80 py-2">
+        <header className="text-center mb-4 md:mb-8">
+          <h1 className="inline-block text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80 py-2">
             FLAMES Compatibility
           </h1>
-          <p className="text-muted-foreground max-w-md mx-auto mt-2">
+          <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto mt-2">
             Discover the relationship between two people using the classic FLAMES technique
           </p>
         </header>
         
         <FlamesCalculator />
         
-        <footer className="text-center mt-12 text-sm text-muted-foreground">
-          <p>FLAMES: Friendship, Love, Affection, Marriage, Enemy, Siblings</p>
+        <footer className="text-center mt-8 md:mt-12 text-sm text-muted-foreground">
           <p className="mt-2 text-[#ea384c] font-medium">Designed by Sandy</p>
         </footer>
       </div>
