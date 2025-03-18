@@ -4,13 +4,13 @@ import { Flame } from 'lucide-react';
 import NameInput from './NameInput';
 import AnimatedButton from './AnimatedButton';
 import FlamesResult from './FlamesResult';
-import { calculateFlames, getFlamesDetails, type FlamesResult } from '@/utils/flamesUtils';
+import { calculateFlames, getFlamesDetails, type FlamesResult as FlamesResultType } from '@/utils/flamesUtils';
 import { cn } from '@/lib/utils';
 
 const FlamesCalculator = () => {
   const [name1, setName1] = useState('');
   const [name2, setName2] = useState('');
-  const [result, setResult] = useState<FlamesResult | null>(null);
+  const [result, setResult] = useState<FlamesResultType | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
   const [error, setError] = useState('');
 
