@@ -142,19 +142,23 @@ Generated with FLAMES Compatibility App
             <AnimatedButton 
               onClick={downloadResult} 
               variant="outline"
-              className="md:col-span-1 flex items-center justify-center"
+              className="md:col-span-1"
             >
-              <Download className="w-4 h-4 mr-1" />
-              Download
+              <span className="inline-flex items-center justify-center">
+                <Download className="w-4 h-4 mr-2" />
+                <span>Download</span>
+              </span>
             </AnimatedButton>
             
             <AnimatedButton 
               onClick={shareResult} 
               variant="outline"
-              className="md:col-span-1 flex items-center justify-center"
+              className="md:col-span-1"
             >
-              <Share2 className="w-4 h-4 mr-1" />
-              Share
+              <span className="inline-flex items-center justify-center">
+                <Share2 className="w-4 h-4 mr-2" />
+                <span>Share</span>
+              </span>
             </AnimatedButton>
           </div>
         </div>
