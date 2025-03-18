@@ -24,6 +24,7 @@ const Index = () => {
         
         <footer className="text-center mt-12 text-sm text-muted-foreground">
           <p>FLAMES: Friendship, Love, Affection, Marriage, Enemy, Siblings</p>
+          <p className="mt-2 text-[#ea384c] font-medium">Designed by Sandy</p>
         </footer>
       </div>
     </div>
